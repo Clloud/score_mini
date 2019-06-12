@@ -1,0 +1,67 @@
+<!--pages/score/score.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="title">{{ sheetDetail.title }}</view>
+    <view class="description">{{ sheetDetail.description }}</view>
+  </view>
+
+  <view class="works">
+    <block wx:for="{{sheetDetail.work}}" wx:for-index="workIndex">
+      <view class="work">
+        <view class="outline" bindtap="onOutlineTap">
+          <view class="left-part">
+            <view class="work-title">{{ item.work_title }}</view>
+            <view class="author">{{ item.author }}</view>
+          </view>
+          <view class="right-part">
+            {{ item.mark }}
+          </view>
+        </view>
+        
+        <block wx:for="{{sheetDetail.rule}}" wx:for-item="scoreItem">
+          <view class="score-item">
+            <view class="item">{{ scoreItem.item }}</view>
+            <view class="score" 
+              data-id="{{workIndex}}"
+              bindtap="onInput">
+              {{item.score[index]}}
+            </view>
+
+            <!-- <input type="number" class="score"
+              value="{{item.score[index]}}"
+              data-id="{{workIndex}}"
+              bindinput="calculateMark"></input> -->
+          </view>
+        </block>
+
+      </view>
+    </block>
+  </view>
+
+  <block wx:if="{{inputStatus}}">
+    <view class="input-box-wrapper">
+      <view class="input-box">
+
+        <view class="score-item">
+          评分项1:
+        </view>
+        <input type="number"
+          class="score-input"
+          value="{{inputScore}}"
+          placeholder="给个分数吧"
+          placeholder-class="score-input-default">
+        </input>
+
+        <view class="send-button">
+          <image class="send-button" src="/imgs/icon/send.png"></image>
+        </view>
+
+      </view>
+    </view>
+
+  </block>
+
+  <block wx:if="{{isCompleted}}">
+    <view class="submit-button">提交</view>
+  </block>
+</view>
