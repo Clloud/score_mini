@@ -1,0 +1,135 @@
+/* pages/score/score.wxss */
+.header{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+  border-bottom: 1px solid #EFEFEF;
+  display: flex;
+  flex-direction: column;
+}
+
+.header .title{
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.header .description{
+  font-size: 14px;
+  color: #737373;
+}
+
+.works{
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.works .work{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.works .work .outline{
+  display: flex;
+  font-size: 16px;  
+  justify-content: space-between;
+  border-bottom: 1px solid #EFEFEF;
+  padding: 10px 20px;
+}
+
+.works .work .outline .left-part .work-title{
+  margin-bottom: 5px;  
+}
+
+.works .work .outline .left-part .author{
+  font-size: 13px;
+  color: #737373;
+}
+
+.works .work .outline .right-part{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #DC143C;
+}
+
+
+.works .work .score-item{
+  display: flex;
+  justify-content: space-between;
+  color: #627FD5;
+  background: #F9F9F9;
+  font-size: 16px;
+  padding: 5px 20px;  
+}
+
+.works .work .score-item .score{
+  width: 30px;
+}
+
+.submit-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+
+  background:#3883FA;
+  font-size: 16px;
+  color: #fff;
+}
+
+.input-box-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background:rgba(180, 180, 180, 0.6);
+}
+
+.input-box{
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #fff;
+  padding: 0 20px;
+  border-radius: 10px 10px 0 0;
+}
+
+.input-box .score-item{
+  font-size: 17px;
+  color: #627FD5;
+  white-space: nowrap;
+}
+
+.input-box .score-input{
+  height: 60px;
+  font-size: 17px;
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.input-box .score-input-default{
+  font-size: 17px;
+  color: #D1D1D1;
+}
+
+.input-box .send-button{
+  width: 24px;
+  height: 24px;
+}
