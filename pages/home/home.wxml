@@ -1,0 +1,29 @@
+<!--pages/home/home.wxml-->
+<view class="container">
+
+  <view class="header">
+    <view class="search">
+      <view class="icon"></view>
+      <view class="text">搜索评分表</view>
+    </view>
+  </view>
+
+  <view class="sheets">
+    <block wx:for="{{sheets}}">
+      <view class="sheet" bindtap="onSheetTap" data-id="{{item.id}}">
+        <view class="top-part">{{ item.title }}</view>
+        <view class="bottom-part">
+          <view class="description">{{ item.description }}</view>
+          <view class="status {{item.status ? 'finished':'ongoing'}}">
+            <block wx:if="{{ item.status }}">已提交</block>
+            <block wx:else>进行中</block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="scan">
+  scan
+  </view>
+</view>
