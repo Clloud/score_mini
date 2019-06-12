@@ -1,66 +1,66 @@
-// pages/me.js
+// pages/me/me.js
+import { Me } from 'me-model.js';
+
+var me = new Me();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this._loadData();
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 生命周期函数--监听页面加载完毕
    */
   onReady: function () {
-
+    wx.setNavigationBarTitle({
+      title: '我的'
+    });
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  _loadData() {
+    //获取用户信息
+    var that = this;
+    me.getUserInfo((data) => {
+      // console.log(data);
+      this.setData({
+        userInfo: data
+      });
+      me.saveUserInfo(data, (callback) => {
+      });
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  /*获取用户信息*/
+  getUserInfo: function () {
+    me.getUserInfo((data) => {
+      this.setData({
+        userInfo: data
+      })
+    })
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  /*用户授权后，获取用户信息 */
+  bindGetUserInfo: function (e) {
+    me.getUserInfo((data) => {
+      this.setData({
+        userInfo: data
+      })
+    })
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
