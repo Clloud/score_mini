@@ -1,2 +1,33 @@
 <!--pages/auth.wxml-->
-<text>pages/auth.wxml</text>
+<view class="container">
+  <view class="title">
+    {{ sheet.title }}
+  </view>
+
+  <view class="description">
+    {{ sheet.description }}
+  </view>
+
+  <view class="code">
+
+    <view class="inputs">
+      <block wx:for="{{sheet.auth_code.length}}">
+        <input class="input"
+          maxlength='1'
+          data-index="{{index}}"
+          bindinput="bindInput"
+          value="{{code[index]}}"
+          focus="{{focus[index]}}">
+        </input>
+      </block>
+    </view>
+
+    <block wx:if="">
+      <view class="tips">请输入授权码</view>
+    </block>
+    <block wx:else>
+      <view class="tips">请输入授权码</view>
+    </block>
+    
+  </view>
+</view>
