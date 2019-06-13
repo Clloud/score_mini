@@ -1,6 +1,10 @@
 {
   "pages": [
-    "pages/me/me"
+    "pages/home/home",
+    "pages/score/score",
+    "pages/me/me",
+    "pages/auth/auth",
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
