@@ -2,7 +2,8 @@
 <view class="container">
 
   <view class="header">
-    <view class="search">
+    <view class="search" bindtap="toSearch">
+      <image src="/imgs/icon/search.png" class="search-icon"></image>
       <view class="icon"></view>
       <view class="text">搜索评分表</view>
     </view>
@@ -23,7 +24,13 @@
     </block>
   </view>
 
-  <view class="scan">
-  scan
+  <block wx:if="{{ !sheets.length }}">
+    <view class="default">扫一扫参与评分</view>
+  </block>
+
+  <view class="scan" bindtap="scan">
+    <image class="scan-icon" 
+      src="/imgs/icon/scan.png">
+    </image>
   </view>
 </view>

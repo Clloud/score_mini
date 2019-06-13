@@ -17,8 +17,10 @@
   color: #B4B4B4;
 }
 
-.header .search .icon{
-  font-size: 16px;
+.header .search .search-icon{
+  width: 18px;
+  height: 18px;
+  margin: 2px 4px 0 0;
 }
 
 .header .search .text{
@@ -29,6 +31,16 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.default{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 40%;
+  width: 100%;
+  color: #A0A0A0;
+  font-size: 17px;
 }
 
 .sheets .sheet{
@@ -58,4 +70,27 @@
 }
 
 .sheets .sheet .bottom-part .finished{
+}
+
+.scan{
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 80rpx;
+  right: 30rpx;
+
+  width: 58px;
+  height: 58px;
+  border-radius: 58px;
+
+  box-shadow: 0 5px 4px #D0D0D0;
+  background: radial-gradient(#627FD5, #5F7EDB);
+}
+
+.scan .scan-icon{
+  height: 27px;
+  width: 27px;
 }
