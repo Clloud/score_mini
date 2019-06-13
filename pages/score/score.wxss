@@ -67,7 +67,6 @@
 }
 
 .works .work .score-item .score{
-  width: 30px;
 }
 
 .submit-button{
@@ -94,7 +93,7 @@
   left: 0;
   bottom: 0;
   right: 0;
-  background:rgba(180, 180, 180, 0.6);
+  background:rgba(180, 180, 180, 0.75);
 }
 
 .input-box{
@@ -114,6 +113,7 @@
 .input-box .score-item{
   font-size: 17px;
   color: #627FD5;
+  /* 禁止换行 */
   white-space: nowrap;
 }
 

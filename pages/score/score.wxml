@@ -19,18 +19,12 @@
         </view>
         
         <block wx:for="{{sheetDetail.rule}}" wx:for-item="scoreItem">
-          <view class="score-item">
+          <view class="score-item"
+            data-work="{{workIndex}}"
+            data-item="{{index}}"
+            bindtap="onInput">
             <view class="item">{{ scoreItem.item }}</view>
-            <view class="score" 
-              data-id="{{workIndex}}"
-              bindtap="onInput">
-              {{item.score[index]}}
-            </view>
-
-            <!-- <input type="number" class="score"
-              value="{{item.score[index]}}"
-              data-id="{{workIndex}}"
-              bindinput="calculateMark"></input> -->
+            <view class="score">{{ item.score[index] }}</view>
           </view>
         </block>
 
@@ -39,23 +33,27 @@
   </view>
 
   <block wx:if="{{inputStatus}}">
-    <view class="input-box-wrapper">
-      <view class="input-box">
+    <!-- 遮罩层 -->
+    <view class="input-box-wrapper" bindtap="onCancelTap">
+    </view>
 
-        <view class="score-item">
-          评分项1:
-        </view>
-        <input type="number"
-          class="score-input"
-          value="{{inputScore}}"
-          placeholder="给个分数吧"
-          placeholder-class="score-input-default">
-        </input>
+    <view class="input-box">
+      <view class="score-item">
+        {{ sheetDetail.rule[currentItemId].item }}
+      </view>
+      <input type="number"
+        class="score-input"
+        value="{{inputScore}}"
+        placeholder="给个分数吧"
+        placeholder-class="score-input-default"
+        focus="true"
+        bindinput="bindScoreInput">
+      </input>
 
-        <view class="send-button">
-          <image class="send-button" src="/imgs/icon/send.png"></image>
-        </view>
-
+      <view class="send-button">
+        <image class="send-button"
+          src="/imgs/icon/{{isValidScore ? 'send@selected.png' : 'send.png'}}"
+          bindtap="submitScore"></image>
       </view>
     </view>
 
