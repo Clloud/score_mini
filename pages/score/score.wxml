@@ -32,7 +32,7 @@
     </block>
   </view>
 
-  <block wx:if="{{inputStatus}}">
+  <block wx:if="{{inputStatus && !isSubmitted }}">
     <!-- 遮罩层 -->
     <view class="input-box-wrapper" bindtap="onCancelTap">
     </view>
@@ -59,7 +59,8 @@
 
   </block>
 
-  <block wx:if="{{isCompleted}}">
-    <view class="submit-button">提交</view>
+  <block wx:if="{{isCompleted && !isSubmitted}}">
+    <view class="submit-button-holder"></view>
+    <view class="submit-button" bindtap="onSubmitSheet">提交</view>
   </block>
 </view>

@@ -69,24 +69,6 @@
 .works .work .score-item .score{
 }
 
-.submit-button{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  position: fixed;
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
-  height: 50px;
-  box-sizing: border-box;
-
-  background:#3883FA;
-  font-size: 16px;
-  color: #fff;
-}
-
 .input-box-wrapper{
   position: fixed;
   top: 0;
@@ -99,6 +81,7 @@
 .input-box{
   display: flex;
   align-items: center;
+  z-index: 99;
 
   position: fixed;
   bottom: 0;
@@ -132,4 +115,28 @@
 .input-box .send-button{
   width: 24px;
   height: 24px;
+}
+
+.submit-button-holder{
+  width: 100%;
+  height: 60px;
+}
+
+.submit-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+
+  background:#627FD5;
+
+  font-size: 16px;
+  color: #fff;
 }

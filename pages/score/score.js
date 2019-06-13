@@ -12,11 +12,13 @@ Page({
     sheetDetail: [],
     inputScore: '',       // 评委输入的分数
     inputStatus: false,   // 是否正在输入分数
+    isValidScore: false,  // 分数是否有效
     isCompleted: false,   // 评分表是否填写完整
-    isValidScore: false,   // 分数是否有效
+    isSubmitted: false,   // 评分表是已经提交
 
     currentWorkId: 0,     // 当前打分的作品
     currentItemId: 0,     // 当前打分的评分项
+    marks: null
   },
 
   /**
@@ -45,15 +47,22 @@ Page({
   _loadData: function (id) {
     var sheetDetail = sheet.loadSheetDetailFromCache(id);
     if (sheetDetail) {
+      let isSubmitted = sheetDetail.hasOwnProperty('isSubmitted') ? sheetDetail.isSubmitted : false;
       this.setData({
-        sheetDetail: sheetDetail
+        sheetDetail: sheetDetail,
+        isSubmitted: isSubmitted
       });
+      // 检查评分表是否填写完整
+      this._isSheetCompleted();
     }
     else {
       sheet.getSheetDetail(id, data => {
         this.setData({
-          sheetDetail: data
+          sheetDetail: data,
+          isSubmitted: false
         });
+        // 检查评分表是否填写完整
+        this._isSheetCompleted();
       });
     }
   },
@@ -110,6 +119,8 @@ Page({
       this._calculateMark();
       // 存入缓存
       sheet.saveSheetDetailToCache(sheetDetail);
+      // 检查评分表是否填写完整
+      this._isSheetCompleted();
     }
   },
 
@@ -145,12 +156,107 @@ Page({
       if (work.score[i] == '') return;
       else mark += work.score[i] * rule[i].ratio;
     }
-    sheetDetail.work[workId].mark = mark;
+    sheetDetail.work[workId].mark = Math.round(mark * 100) / 100;
     this.setData({ sheetDetail: sheetDetail });
   },
 
+  /* 检查评分表是否填写完整并修改标记位 */
+  _isSheetCompleted: function() {
+    var works = this.data.sheetDetail.work;
+    var marks = [];
+
+    for (let i = 0; i < works.length; i++) {
+      if (!works[i].hasOwnProperty('mark')) {
+        this.setData({ isCompleted: false });
+        return false;
+      }
+      marks.push({
+        'author': works[i].author,
+        'work_title': works[i].work_title,
+        'mark': works[i].mark,
+        'sheet_id': works[i].sheet_id
+      });
+    }
+
+    // 保存评分数据
+    this.setData({
+      isCompleted: true,
+      marks: {'marks' : marks}
+    });
+    return true;
+  },
+
+
   /* 展开/折叠评分项 */
   onOutlineTap: function(event) {
+  },
+
+  /* 提交评分表模态框 */
+  onSubmitSheet: function() {
+    var that = this;
+    wx.showModal({
+      confirmColor: '#737373',
+      cancelColor: '#627FD5',
+      content: '确认提交吗？',
+      success(res) {
+        if (res.confirm) {
+          that._submitSheet();
+        }
+      }
+    });
+  },
+
+  /* 提交评分表 */
+  _submitSheet: function() {
+    var sheetDetail = this.data.sheetDetail;
+    var that = this;
+
+    // 提交评分数据
+    var param = {
+      url: 'score',
+      data: this.data.marks,
+      type: 'POST',
+      // 提交成功
+      sCallback: function (res) {
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 2000
+        });
+        // 修改本地提交状态
+        sheetDetail.isSubmitted = true;
+        that.setData({
+          isSubmitted: true,
+          sheetDetail: sheetDetail
+        });
+        // 存入缓存
+        sheet.saveSheetDetailToCache(that.data.sheetDetail);
+        // 同步评分表概要状态
+        that._syncSheetStatus(that.data.sheetDetail.id);
+        // 返回主页
+        wx.navigateBack({
+          delta: 1
+        });
+      },
+      // 提交失败
+      eCallback: function (err) {
+        wx.showToast({
+          title: '提交失败，请重试',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    };
+    sheet.request(param);
+  },
+
+  /* 同步评分表概要状态 */
+  _syncSheetStatus: function(sheetId) {
+    var sheets = sheet.loadSheetsFromCache();
+    for (let i = 0; i < sheets.length; i++) {
+      if (sheets[i].id == sheetId) sheets[i].status = 1;
+    }
+    wx.setStorageSync('sheets', sheets);
   },
 
   /* 取消输入分数 */
