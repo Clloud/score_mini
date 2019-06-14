@@ -1,0 +1,35 @@
+<!--pages/search/search.wxml-->
+<view class="container">
+
+  <view class="header">
+    <view class="search">
+      <image src="/imgs/icon/search.png" class="search-icon"></image>     
+      <input class="search-input"
+        value="{{keyword}}"
+        placeholder="请输入评分表id"
+        placeholder-class="keyword-input-default"
+        focus="true"
+        bindinput="bindKeywordInput">
+      </input>
+    </view>
+  </view>
+
+  <view class="sheets" wx:if="{{sheets.length}}">
+    <block wx:for="{{sheets}}">
+      <view class="sheet" bindtap="onSheetTap" data-id="{{item.id}}">
+        <view class="top-part">{{ item.title }}</view>
+        <view class="bottom-part">
+          <view class="description">{{ item.description }}</view>
+          <view class="status {{item.status ? 'finished':'ongoing'}}">
+            <block wx:if="{{ item.status }}">已提交</block>
+            <block wx:else>进行中</block>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view wx:if="{{noResult}}" class="no-result">没有找到评分表...</view>
+
+  
+</view>
