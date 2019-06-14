@@ -6,6 +6,8 @@
   border-bottom: 1px solid #EFEFEF;
   display: flex;
   flex-direction: column;
+  /* 避免元素重叠 */
+  flex: none;
 }
 
 .header .title{
@@ -28,11 +30,14 @@
 .works .work{
   display: flex;
   flex-direction: column;
-  padding: 0;
+  /* 避免元素重叠 */
+  flex: none; 
 }
 
 .works .work .outline{
   display: flex;
+  /* 避免元素重叠 */
+  flex: none;
   font-size: 16px;  
   justify-content: space-between;
   border-bottom: 1px solid #EFEFEF;
@@ -56,14 +61,16 @@
   color: #DC143C;
 }
 
-
 .works .work .score-item{
+  height: 30px;
   display: flex;
+  flex: none;
   justify-content: space-between;
+  align-items: center;
   color: #627FD5;
   background: #F9F9F9;
   font-size: 16px;
-  padding: 5px 20px;  
+  padding: 0 20px;
 }
 
 .works .work .score-item .score{

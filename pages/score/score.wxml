@@ -10,7 +10,9 @@
       <view class="work">
         <view class="outline" bindtap="onOutlineTap">
           <view class="left-part">
-            <view class="work-title">{{ item.work_title }}</view>
+            <view class="work-title">
+              {{ item.work_title.triml().trimr() ? item.work_title : '作品' + (workIndex + 1)}}
+            </view>
             <view class="author">{{ item.author }}</view>
           </view>
           <view class="right-part">

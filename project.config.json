@@ -49,20 +49,27 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 0,
 			"list": [
 				{
 					"id": 0,
 					"name": "score",
 					"pathName": "pages/score/score",
-					"query": "id=2",
+					"query": "id=50",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "auth",
+					"pathName": "pages/auth/auth",
+					"query": "id=51",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "auth",
-					"pathName": "pages/auth/auth",
-					"query": "id=2",
+					"name": "search",
+					"pathName": "pages/search/search",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -28,7 +28,7 @@ Page({
    */
   onReady: function () {
     wx.setNavigationBarTitle({
-      title: '',
+      title: 'Score',
     })
   },
 

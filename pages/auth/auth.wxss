@@ -2,13 +2,16 @@
 .title{
   font-size: 22px;
   margin-top: 60rpx;
+  width: 80%;
+  text-align: center;
 }
 
 .description{
   margin: 60rpx 0;
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 70%;
+  text-align: center;
   color: #737373;
   font-size: 16px;
 }
@@ -22,7 +25,16 @@
   align-items: center;
 }
 
-.inputs{
+.code .input{
+  width: 120px;
+  height: 40px;
+  color: #5F7EDB;
+  font-size: 36px;
+  border-bottom: 1px solid #888;
+  margin: 0 0 20px 0;
+}
+
+/* .inputs{
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,7 +51,7 @@
   height: 40px;
   padding: 5px 0;
   margin: 0 5px;
-}
+} */
 
 .code .tips{
   font-size: 16px;

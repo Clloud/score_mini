@@ -10,7 +10,7 @@
 
   <view class="code">
 
-    <view class="inputs">
+    <!-- <view class="inputs">
       <block wx:for="{{sheet.auth_code.length}}">
         <input class="input"
           maxlength='1'
@@ -20,14 +20,16 @@
           focus="{{focus[index]}}">
         </input>
       </block>
-    </view>
+    </view> -->
+    <input class="input"
+      bindinput="bindInput"
+      value="{{inputCode}}"
+      focus="true"
+      style="width:{{sheet.auth_code.length <= 6 ? 120 : sheet.auth_code.length * 20}}px">
+    </input>
 
-    <block wx:if="">
-      <view class="tips">请输入授权码</view>
-    </block>
-    <block wx:else>
-      <view class="tips">请输入授权码</view>
-    </block>
+
+    <view class="tips">请输入授权码</view>
     
   </view>
 </view>
