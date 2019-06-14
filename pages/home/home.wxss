@@ -34,13 +34,23 @@
 }
 
 .default{
-  display: flex;
-  justify-content: center;
   position: fixed;
-  top: 40%;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+}
+
+.default .default-img{
+  width: 150px;
+  height: 150px;
+}
+
+.default .default-text{
   color: #A0A0A0;
   font-size: 17px;
+  margin-top: 20px;
 }
 
 .sheets .sheet{

@@ -25,7 +25,10 @@
   </view>
 
   <block wx:if="{{ !sheets.length }}">
-    <view class="default">扫一扫参与评分</view>
+    <view class="default">
+      <image class="default-img" src="/imgs/icon/default.gif"></image>
+      <view class="default-text">扫一扫参与评分</view>
+    </view>
   </block>
 
   <view class="scan" bindtap="scan">
