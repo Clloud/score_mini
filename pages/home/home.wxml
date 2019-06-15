@@ -1,6 +1,7 @@
 <!--pages/home/home.wxml-->
 <view class="container">
 
+  <view class="header-holder"></view>
   <view class="header">
     <view class="search" bindtap="toSearch">
       <image src="/imgs/icon/search.png" class="search-icon"></image>
